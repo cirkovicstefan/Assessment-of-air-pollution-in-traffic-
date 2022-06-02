@@ -1,0 +1,20 @@
+<div class="form-group row">
+    <label for="" class="col-sm-2 col-form-label">Region <span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+        <input type="text" class="col-sm-4 mb-1" name="" id="" [(ngModel)]="Region" required>
+
+    </div>
+    <label for="" class="col-sm-2 col-form-label">Grad <span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+        <input type="text" class="col-sm-4 mb-1" name="" id="" [(ngModel)]="Grad" required>
+
+    </div>
+    <label for="" class="col-sm-2 col-form-label">Mesto <span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+        <input type="text" class="col-sm-4 mb-1" name="" id="" [(ngModel)]="Mesto" required >
+
+    </div>
+</div>
+
+<button (click)="addStanica()" *ngIf="stanica.IdStanice==0" class="btn btn-primary">Dodaj</button>
+<button (click)="izmeniStanica()" *ngIf="stanica.IdStanice!=0" class="btn btn-primary">Izmeni</button>

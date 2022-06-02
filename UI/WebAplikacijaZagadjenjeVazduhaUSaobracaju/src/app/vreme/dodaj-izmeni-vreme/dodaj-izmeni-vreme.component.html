@@ -1,0 +1,31 @@
+<div class="form-group row">
+    <label for="" class="col-sm-2 col-form-label">Sat <span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+        <!--<input type="time" class="col-sm-4 mb-1" name="" id="" [(ngModel)]="Sat" required>-->
+        <select name="sat" id="dan" [(ngModel)]="Sat" class="col-sm-4 mb-1" required>
+            <option *ngFor="let sat of ListaSati">
+                {{sat}}
+            </option>
+
+        </select>
+    </div>
+    <label for="" class="col-sm-2 col-form-label">Dan <span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+        <!--<input type="text" class="col-sm-4 mb-1" name="" id="" [(ngModel)]="Dan" required>-->
+        <select name="dan" id="dan" [(ngModel)]="Dan" class="col-sm-4 mb-1" required>
+            <option *ngFor="let dan of ListaDana">
+                {{dan}}
+            </option>
+
+        </select>
+    </div>
+    <label for="" class="col-sm-2 col-form-label">Datum <span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+        <input type="date" placeholder="dd-mm-yyyy" value=""
+        min="1997-01-01" max="2030-12-31" class="col-sm-4 mb-1" name="" id="" [(ngModel)]="Datum" required>
+
+    </div>
+</div>
+
+<button (click)="addVremena()" *ngIf="vreme.IdVremena==0" class="btn btn-primary">Dodaj</button>
+<button (click)="izmeniVreme()" *ngIf="vreme.IdVremena!=0" class="btn btn-primary">Izmeni</button>

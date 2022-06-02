@@ -1,0 +1,35 @@
+<section class="vh-100" >
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="mb-5">PRIJAVITE SE</h3>
+  
+              <div class="form-outline mb-4">
+                <label class="form-label" for="typeEmailX-2">Korisnicko ime</label>
+                <input type="text" id="korisnickoime" [(ngModel)]="username" class="form-control form-control-lg" required />
+                
+              </div>
+  
+              <div class="form-outline mb-4">
+                <label class="form-label" for="">Lozinka</label>
+                <input type="password" id="lozinka" [(ngModel)]="password" class="form-control form-control-lg" required />
+               
+              </div>
+  
+             
+  
+              <button class="btn btn-primary btn-lg btn-block" (click)="Prihvati()" type="submit">Prijavi se</button>
+                <p class="text-danger py-2" style="font-weight: 500;" id="greska"></p>
+              <hr class="my-4">
+  
+             
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

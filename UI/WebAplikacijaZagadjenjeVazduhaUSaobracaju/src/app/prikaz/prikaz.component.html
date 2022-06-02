@@ -1,0 +1,214 @@
+<div class="container text-center">
+    <div class="row d-flex" style="align-items: center; justify-content: center; height: 150px;">
+
+        <h2 id="header" class="text-bold" style="font-weight: 700;"></h2>
+        
+
+    </div>
+  
+    <div class="row py-3 d-flex" style="justify-content: center;align-items: center;">
+        <div class="form-group">
+            <label for="stanica">ODABERITE REGION</label>
+            <select name="stanica" id="stanica" [(ngModel)]="IdStanice" class="col-sm-12 mb-1 form-control   mb-3"
+                (click)="Pretraga()" required>
+
+
+
+                <option *ngFor="let sta of StanicaList" value="{{sta.IdStanice}}">
+                    {{sta.Region}};&nbsp;
+                    {{sta.Grad}};&nbsp;
+                    {{sta.Mesto}};&nbsp;
+                </option>
+
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6 text-center">
+        <img id="maskota" src="" width="250" height="350" alt="">
+    </div>
+    <div class="col-md-6 text-center d-flex justify-content-center align-items-center">
+        <div id="kartica" class="card text-white  mb-3 align-items-self" style="width: 25rem;height: 23rem;">
+            <div class="card-header text-center" style="font-size: 23px; font-weight: 500;">NAJNOVI PODACI</div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: 24px; font-weight: 600;">Ocena kvaliteta vazduha za <br>
+                    {{DatumPraviFormat}} /
+                    {{DanR?.toLowerCase()}} /
+                    {{SatR}} </p>
+                <p class="card-text" style="font-size: 24px; font-weight: 600;">
+                    Broj vozila: {{brojVozila}}
+                </p>
+                <table class="table text-white py-5">
+                    <thead>
+                        <tr>
+                            <th>PM10</th>
+                            <th>NO2</th>
+                            <th>CO</th>
+                            <th>SO2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{{PM10}}</th>
+                            <th>{{NO2}}</th>
+                            <th>{{CO}}</th>
+                            <th>{{SO2}}</th>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row py-5 d-flex text-center" style="justify-content: center;align-items: center;">
+        <div class="col-md-12">
+
+            <h4 style="font-weight: 700;">PRIKAZ PODATAKA</h4>
+            <hr>
+            <div class="input-group d-flex justify-content-end py-3">
+                <div class="form-outline">
+                    <input type="search" id="form1" class="form-control" [(ngModel)]="filterTerm"
+                        placeholder="Pretraga..." />
+
+                </div>
+
+            </div>
+            <table class="table table-striped">
+                <thead class="">
+                    <tr>
+                        
+                        <th>Region</th>
+                        <th>Grad</th>
+                        <th>Mesto</th>
+                        <th>Broj vozila</th>
+                        <th>PM10</th>
+                        <th>NO2</th>
+                        <th>CO</th>
+                        <th>SO2</th>
+                        <th>Sat</th>
+                        <th>Dan</th>
+                        <th>Datum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of x | filter:filterTerm">
+                        
+                            <td>{{item.Region}}</td>
+                            <td>{{item.Grad}}</td>
+                            <td>{{item.Mesto}}</td>
+                            <td>{{item.brojVozila}}</td>
+                            <td>{{item.PM10}}</td>
+                            <td>{{item.NO2}}</td>
+                            <td>{{item.CO}}</td>
+                            <td>{{item.SO2}}</td>
+                            <td>{{item.sat}}</td>
+                            <td>{{item.dan}}</td>
+                            <td>{{item.datum}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row m-5 text-center">
+       <div class="col-md-12">
+        <h4 style="font-weight: 700;">GARFIČKI PRIKAZ PODATAKA</h4>
+        <hr>
+        <div style="display: block;" class="w-100">
+            <canvas baseChart 
+              chartType="bar"
+              [datasets]="chartData"
+              [labels]="chartLabels"
+              [options]="chartOptions"
+              [plugins]="chartPlugins"
+              [legend]="chartLegend">
+            </canvas>
+          </div>
+       </div>
+          
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h4 style="font-weight: 700;">KRITERIJUMI</h4>
+            <hr>
+
+            <table class="table table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ODLIČAN</th>
+                        <th>DOBAR</th>
+                        <th>PRIHVATLJIV</th>
+                        <th>ZAGAĐEN</th>
+                        <th>JAKO ZAGAĐEN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>NO2 [1h]</th>
+                        <th style="background-color: #8fc74a;">0 - 50</th>
+                        <th style="background-color: #fff212;">50.01 - 100</th>
+                        <th style="background-color: #f79633;">100.01 - 200</th>
+                        <th style="background-color: #ed3237;">200.01 - 400</th>
+                        <th style="background-color: #895aa3;">> 400.01</th>
+                    </tr>
+                    <tr>
+                        <th>CO [1h]</th>
+                        <th style="background-color: #8fc74a;">0 - 4.5</th>
+                        <th style="background-color: #fff212;">4.50001 - 9</th>
+                        <th style="background-color: #f79633;">9.00001 - 13.5 </th>
+                        <th style="background-color: #ed3237;">13.50001 - 18</th>
+                        <th style="background-color: #895aa3;">> 18.00001</th>
+                    </tr>
+                    <tr>
+                        <th>PM10 [1h]</th>
+                        <th style="background-color: #8fc74a;">0 - 25</th>
+                        <th style="background-color: #fff212;">25.01 - 50</th>
+                        <th style="background-color: #f79633;">50.01 - 90</th>
+                        <th style="background-color: #ed3237;">90.01 - 180</th>
+                        <th style="background-color: #895aa3;">> 180.01</th>
+                    </tr>
+                    <tr>
+                        <th>SO2 [1h]</th>
+                        <th style="background-color: #8fc74a;">0 - 50</th>
+                        <th style="background-color: #fff212;">50.01 - 100</th>
+                        <th style="background-color: #f79633;">100.01 - 350</th>
+                        <th style="background-color: #ed3237;">350.01 - 500</th>
+                        <th style="background-color: #895aa3;">> 500.01</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--          Futer                 -->
+<hr>
+<div class="row d-flex align-items-center" style="height: 50px;">
+    <div class="col-md-6 d-flex justify-content-start">
+        <p style="font-weight: 700;">Kvalitet vazduha</p>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+        <p style="font-weight: 700;">&copy;&nbsp;FTN Čačak</p>
+    </div>
+</div>
